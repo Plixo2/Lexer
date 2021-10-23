@@ -1,0 +1,21 @@
+class lele(x,y,z) {
+
+var lel = 12
+var a = 10*2
+var b = 10%4
+var c = (10*4) - 2 + 3 /3
+ if(1*2 < 3) {
+        var a = 10
+    } else {
+        var b = 2
+    }
+}
+
+class lol() {
+    if(1*2 < 3) {
+        var a = 10
+    } else {
+        var b = 2
+    }
+}
+lele
