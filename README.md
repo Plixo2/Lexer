@@ -1,6 +1,7 @@
 # Lexer
 Lexer for WQ
 
+## Code
 
 ```javascript
 class class1(x,y,z) {
@@ -26,11 +27,13 @@ class class2() {
 
 ## Lexer
 
+Tokens:
+
 *class*, *class1*, *(*, *x*, *,*, *y*, *,*, *z*, *)*, *{*, *var*, *lel*, *=*, *12*, *var*, *a*, *=*, *10*, *, *2*, *var*, *b*, *=*, *10*, *%*, *4*, *var*, *c*, *=*, *(*, *10*, *, *4*, *)*, *-*, *2*, *+*, *3*, */*, *3*, *if*, *(*, *1*, *, *2*, *<*, *3*, *)*, *{*, *var*, *e*, *=*, *10*, *}*, *else*, *{*, *var*, *l*, *=*, *4*, *, *(*, *4*, *%*, *a*, *)*, *}*, *}*, *class*, *class2*, *(*, *)*, *{*, *if*, *(*, *1*, *, *2*, *<*, *3*, *)*, *{*, *var*, *a*, *=*, *10*, *}*, *else*, *{*, *var*, *b*, *=*, *2*, *}*, *}*, }
 
-## Abstrct Syntax Tree
+## Abstract Syntax Tree
 
-```sh
+```
 │               ┌── 12 NumberNode
 │           ┌── lel VarNode
 │           │       ┌── 2 NumberNode
