@@ -1,3 +1,5 @@
 rootProject.name = 'Lexer'
 include 'src'
+include 'src:test'
+findProject(':src:test')?.name = 'test'
 

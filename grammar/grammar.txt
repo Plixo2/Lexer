@@ -1,0 +1,82 @@
+In := top
+
+top := struct top | logic top | "eof"
+
+
+struct := "struct"? ID "{"? declarationCompound "}"?
+declarationCompound := declaration declarationCompound! ||
+declaration := Type ID!
+
+
+logic := "logic"? Id "{"? logicCompound "}"?
+logicCompound := logicSpace logicCompound | logicSpace ||
+logicSpace := id "="? richFunction
+inputList := inputTerm ","? inputList | inputTerm ||
+inputTerm := Type id
+
+argList := expression ","?  argList | expression ||
+
+//statements
+statement := blockStatement | assignmentStatement | declarationStatement | returnStatement | evaluationStatement
+
+assignmentStatement := member "="? expression!
+declarationStatement := type id "="? expression!
+
+blockStatement := "{"? statementCompound "}"?
+statementCompound := statement statementCompound ||
+
+returnStatement := "return"? expression
+evaluationStatement := expression
+
+//todo
+//branchStatement := "if"
+
+//type
+Type := arrayType | functionType | objectType
+arrayType := "<"? Type ">"?
+functionType := "fn"? "("? functionTypeCompound "->"? Type ")"?
+functionTypeCompound := Type ","? functionTypeCompound! | Type ||
+objectType := ID
+
+
+ID := "Keyword"
+
+//expression here
+expression := function | boolArithmetic
+factor := "("? expression ")"? | unary | not | number | boolLiteral | member
+
+number := "number"
+boolLiteral := "false" | "true"
+
+//member
+member := ID memberCompound | ID
+memberCompound := varTerminal memberCompound | varTerminal
+varTerminal := memberAccess | callAccess | arrayAccess
+memberAccess := "."? ID
+callAccess := "("? argList ")"?
+arrayAccess := "["? expression "]"?
+
+
+//unary
+unary := neg_unary | pos_unary
+neg_unary := "-"? factor
+pos_unary := "+"? factor
+
+//not
+not :=  "!"? factor
+
+boolArithmetic := comparisonArithmetic boolArithmeticFunc boolArithmetic! | comparisonArithmetic
+comparisonArithmetic := arithmetic comparisonArithmeticFunc comparisonArithmetic! | arithmetic
+arithmetic := term arithmeticFunc arithmetic! | term
+term := factor termFunc term! | factor
+termFunc := "*" | "/"
+arithmeticFunc := "+" | "-"
+comparisonArithmeticFunc := ">" | ">=" | "<" | "<=" | "==" | "!="
+boolArithmeticFunc := "&&" | "||"
+
+//function
+function := anonymousFunction | richFunction
+anonymousFunction := "fn"? "("? IdList ")"? "->"? statement!
+richFunction := "fn"? "("? inputList! ")"? "->"? Type! statement!
+
+IdList := ID ","?  IdList | ID ||
